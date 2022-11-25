@@ -2,6 +2,7 @@ const result = document.querySelector("#result");
 const radios = document.querySelectorAll(".radio");
 const colors = ["yellow", "blue", "red", "gray", "green"];
 
+//로또 생성 함수
 function makeLotto() {
   const ul = document.createElement("ul");
   result.appendChild(ul);
