@@ -74,6 +74,59 @@
       }
     }
   }
+  &.write {
+    .row {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding: 10px;
+      &:nth-child(1) {
+        border-top: 1px solid #ccc;
+      }
+
+      > span {
+        width: 200px;
+      }
+      input,
+      textarea {
+        flex-grow: 1;
+        height: 50px;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      textarea {
+        height: 300px;
+        resize: none;
+      }
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      .btn {
+        width: 150px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        margin: 0 10px;
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 16px;
+        border-radius: 10px;
+        &-write {
+          background-color: rgb(1, 146, 172);
+        }
+        &-reset {
+          background-color: rgb(136, 136, 136);
+        }
+      }
+    }
+  }
 }
 .bbs-pagination {
   margin-top: 50px;

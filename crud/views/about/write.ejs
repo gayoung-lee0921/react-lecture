@@ -1,0 +1,26 @@
+<%- include("../include/sub-header")%>
+<!-- 서버로 내용을 전달하는 방법 1. ajax(페이지 유지된 채로), 2.form(페이지 새로 바뀌면서)  -->
+<div class="container">
+  <!-- 내용을 보낼 때는 method=post, 값을 얻어올 땐 method=get-->
+  <form action="/about/write" id="write-form" method="post">
+    <div class="bbs write">
+      <div class="row">
+        <span>제목</span>
+        <input type="text" id="subject" name="subject" />
+      </div>
+      <div class="row">
+        <span>글쓴이</span>
+        <input type="text" id="writer" name="writer" />
+      </div>
+      <div class="row">
+        <span>내용</span>
+        <textarea name="contents" id="contents" cols="30" rows="10"></textarea>
+      </div>
+      <div class="btns">
+        <button class="btn btn-write">글쓰기</button>
+        <button class="btn btn-reset" type="reset">취소</button>
+      </div>
+    </div>
+  </form>
+</div>
+<%- include("../include/sub-footer") %>

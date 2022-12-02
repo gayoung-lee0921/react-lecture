@@ -1,0 +1,25 @@
+<%- include("../include/sub-header")%>
+<div class="container">
+  <p>Total : <%= list.length %></p>
+
+  <div class="bbs list">
+    <div class="bbs-header">
+      <span class="no">번호</span>
+      <span class="subject">제목</span>
+      <span class="writer">작성자</span>
+      <span class="date">작성일</span>
+    </div>
+    <ul class="bbs-body">
+      <!-- forEach()는 반복문이기 때문에 <% %>으로 써줘야 된다, 값을 넣을 때는 <%= %> 사용 -->
+      <% list.forEach((item,idx) => { %>
+      <li>
+        <span class="no"><%= item.no%></span>
+        <span class="subject"><%= item.subject%></span>
+        <span class="writer"><%= item.writer %></span>
+        <span class="date"><%= item.date %></span>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
+</div>
+<%- include("../include/sub-footer") %>

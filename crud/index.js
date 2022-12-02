@@ -14,11 +14,17 @@ const majorRouter = require("./routes/major.js");
 const researchRouter = require("./routes/research.js");
 const educationRouter = require("./routes/education.js");
 const communityRouter = require("./routes/community.js");
+const memberRouter = require("./routes/member.js");
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use("/about", aboutRouter); // /about를 써야 aboutRouter를 쓸 수 있게 만듦
 app.use("/major", majorRouter);
 app.use("/research", researchRouter);
 app.use("/education", educationRouter);
 app.use("/community", communityRouter);
+app.use("/member", memberRouter);
 
 //console.log(PORT); 8081 port
 

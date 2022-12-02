@@ -70,6 +70,55 @@
   text-align: left;
   padding-left: 20px;
 }
+.bbs.write .row {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+}
+.bbs.write .row:nth-child(1) {
+  border-top: 1px solid #ccc;
+}
+.bbs.write .row > span {
+  width: 200px;
+}
+.bbs.write .row input,
+.bbs.write .row textarea {
+  flex-grow: 1;
+  height: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.bbs.write .row textarea {
+  height: 300px;
+  resize: none;
+}
+.bbs.write .btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.bbs.write .btns .btn {
+  width: 150px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  margin: 0 10px;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.bbs.write .btns .btn-write {
+  background-color: rgb(1, 146, 172);
+}
+.bbs.write .btns .btn-reset {
+  background-color: rgb(136, 136, 136);
+}
 
 .bbs-pagination {
   margin-top: 50px;
