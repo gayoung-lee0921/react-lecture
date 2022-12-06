@@ -5,7 +5,7 @@ const db = require("./db/db");
 
 const session = require("express-session");
 const passport = require("passport");
-app.use(session({ secret: "비밀코드jjang051", resave: true, saveUninitialized: false }));
+app.use(session({ secret: "MONG_URL", resave: true, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 

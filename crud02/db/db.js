@@ -8,7 +8,7 @@
 //db안에 collection
 const mongoose = require("mongoose");
 const db = mongoose
-  .connect("mongodb+srv://gayoung0921:sandodong123@cluster0.ojcitbb.mongodb.net/?retryWrites=true&w=majority", {
+  .connect("MONG_URL", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     dbName: "front-test",
