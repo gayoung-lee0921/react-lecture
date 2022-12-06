@@ -4,7 +4,7 @@ const userSchema = require("../models/UserSchema");
 const session = require("express-session"); // 서버에 저장
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-// router.use(session({ secret: "비밀코드jjang051", resave: true, saveUninitialized: false }));
+router.use(session({ secret: "MONG_URL", resave: true, saveUninitialized: false }));
 router.use(passport.initialize());
 router.use(passport.session());
 // 로그인 전략 짜기....
