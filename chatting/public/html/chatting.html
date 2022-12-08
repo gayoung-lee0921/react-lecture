@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatting</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <header id="header">kakao talk</header>
+    <div class="contents">
+      <div class="user">
+        <label><span>대화명</span><input type="text" id="name" placeholder="대화명을 입력해주세요" /></label>
+        <button class="btn-enter">입장</button>
+      </div>
+
+      <div class="msg-box">
+        <ul class="msg-list">
+          <!--
+          <li class="other">
+            <div class="profile">
+              <img src="../images/man.png" alt="" />
+            </div>
+            <div class="msg-item">
+              <span class="name">이가영</span>
+              <div class="inner">
+                <div class="msg">안녕하세요</div>
+                <div class="time">오전 11:30:24</div>
+              </div>
+            </div>
+          </li>
+          <li class="me">
+            <div class="profile">
+              <img src="../images/man.png" alt="" />
+            </div>
+            <div class="msg-item">
+              <span class="name">이가영</span>
+              <div class="inner">
+                <div class="msg">안녕하세요</div>
+                <div class="time">오전 11:30:24</div>
+              </div>
+            </div>
+          </li>
+          -->
+        </ul>
+      </div>
+
+      <div class="send-box">
+        <textarea name="" id="msg" cols="30" rows="10"></textarea>
+        <button class="btn btn-send">전송</button>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    const socket = io();
+    // 클라이언트가 메시지 보낼 때 쓰는 method emit()
+    const btnSend = document.querySelector(".btn-send");
+    const msg = document.querySelector("#msg");
+    const name = document.querySelector("#name");
+    const msgList = document.querySelector(".msg-list");
+    const msgBox = document.querySelector(".msg-box");
+    const btnEnter = document.querySelector(".btn-enter");
+
+    btnEnter.addEventListener("click", () => {
+      socket.emit("enter", { name: name.value, gender: "male", age: 20 });
+    });
+
+    msg.addEventListener("keydown", (e) => {
+      // keydown: 키보드 눌렀을 때 실행
+      if (e.keyCode === 13) {
+        if (msg.value.trim().length <= 0) {
+          e.preventDefault();
+        }
+      }
+    });
+
+    msg.addEventListener("keyup", (e) => {
+      // keyup: 키보드 손 땠을 때 실행
+      if (e.keyCode === 13) {
+        if (e.shiftKey) {
+          return;
+        }
+        if (msg.value.trim().length <= 0) {
+          msg.value = "";
+          msg.focus();
+          return;
+        }
+        // socket.emit("yaho", { name: name.value, msg: msg.value.trim().replaceAll(\n, "<br>") }); replaceAll을 하면 \n들이 생겨남
+
+        socket.emit("yaho", { name: name.value, msg: msg.value.trim().replace(/\n/g, "<br>") });
+        msg.value = ""; // 공백
+        msg.focus(); //커서
+      }
+
+      if (msg.value.trim().length > 0) {
+        btnSend.classList.add("on"); //뭐라도 메시지 창에 쓰면 전송버튼이 켜짐
+      } else {
+        btnSend.classList.remove("on");
+      }
+    });
+
+    btnSend.addEventListener("click", () => {
+      socket.emit("yaho", { name: name.value, msg: msg.value });
+      msg.value = ""; //공백
+      msg.focus(); //커서
+    });
+    socket.on("serverYaho", (serverData) => {
+      console.log(serverData.name, "===", serverData.msg);
+      const li = document.createElement("li");
+      // let className = "";
+      // if (name === serverData.name) {
+      //   className = "me";
+      // } else {
+      //   className = "other";
+      // }
+      const className = name.value === serverData.name ? "me" : "other";
+
+      li.classList.add(className);
+      li.innerHTML = `<div class="profile">
+              <img src="../images/man.png" alt="" />
+            </div>
+            <div class="msg-item">
+              <span class="name">${serverData.name}</span>
+              <div class="inner">
+                <div class="msg">${serverData.msg}</div>
+                <div class="time">${serverData.time}</div>
+              </div>
+            </div>`;
+      msgList.appendChild(li);
+      msgBox.scrollTo(0, msgList.offsetHeight);
+    });
+
+    socket.on("serverEnter", (serverData) => {
+      const li = document.createElement("li");
+      li.classList.add("enter");
+      li.innerHTML = `<div class="name">${serverData.name} 님 입장하셨습니다<div>`;
+      msgList.appendChild(li);
+      msgBox.scrollTo(0, msgList.offsetHeight);
+    });
+  </script>
+</html>
