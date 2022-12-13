@@ -1,14 +1,26 @@
-import React from "react";
+// ref는 리액트에서 dom에 접근할 때 사용하는 속성
+
+import React, { useRef } from "react";
 
 function TodoInsert({ insertTodoItem }) {
-  function insertTodo() {
-    console.log("할일을 추가했습니다");
+  const inputTodo = useRef();
+  function transInsertTodoItem() {
+    //console.log(inputTodo.current.value); .current는 input 태그를 가르킴
+
+    insertTodoItem(inputTodo.current.value);
+    inputTodo.current.value = "";
+    inputTodo.current.focus();
   }
-  //props.insertTodoItem();
+  function keyTransInsertTodoItem(e) {
+    if (e.keyCode === 13) {
+      transInsertTodoItem();
+    }
+  }
+
   return (
     <div className="todo-insert">
-      <input type="text" />
-      <button onClick={insertTodoItem}>
+      <input type="text" ref={inputTodo} onKeyDown={keyTransInsertTodoItem} />
+      <button onClick={transInsertTodoItem}>
         <i className="fa-solid fa-plus"></i>
       </button>
     </div>
