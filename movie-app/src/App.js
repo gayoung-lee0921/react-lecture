@@ -7,6 +7,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import List from "./components/List";
 import Detail from "./components/Detail";
+import ProfileDetail from "./components/ProfileDetail";
+import SearchResult from "./components/SearchResult";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Routes>
           <Route path="/" element={<List></List>}></Route>
           <Route path="/detail/:id" element={<Detail></Detail>}></Route>
+          <Route path="/profile/:id" element={<ProfileDetail></ProfileDetail>}></Route>
+          <Route path="/search" element={<SearchResult></SearchResult>}></Route>
         </Routes>
         <Footer></Footer>
       </div>

@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Profile from "./Profile";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 const ID = process.env.REACT_APP_API_KEY;
 
 export default function Detail() {
-  const [count, setCount] = useState(0);
   const movieId = useParams().id;
   const [detail, setDetail] = useState({});
   const [genres, setGenres] = useState("");
@@ -22,25 +24,15 @@ export default function Detail() {
     })
       // prettier-ignore
       axios
-      .get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${ID}&language=en-US`)
+      .get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${ID}&language=ko-KR`)
         .then((response)=>{
-            //console.log(response.data.cast)
-            setCast(response.data.cast.map(item => item.profile_path))
-            console.log(cast)
+            setCast(response.data.cast)
         })
-
     },[]);
 
   return (
     <>
       <div className="container detail">
-        {/* <button
-        onClick={() => {
-          setCount(count + 1);
-        }}
-      >
-        클릭
-      </button> */}
         <h2>{detail.title}</h2>
         <div className="detail-box">
           <div className="img-box">
@@ -62,7 +54,7 @@ export default function Detail() {
               </dl>
               <dl>
                 <dt>상영시간</dt>
-                <dd>{detail.runtime}</dd>
+                <dd>{detail.runtime} 분</dd>
               </dl>
               <dl>
                 <dt>관객평점</dt>
@@ -78,7 +70,17 @@ export default function Detail() {
               </dl>
               <dl>
                 <dt>주요 출연진</dt>
-                <dd>{/* <img src={`https://image.tmdb.org/t/p/w200/${cast}`} alt="" /> */}</dd>
+                <dd>
+                  <Swiper spaceBetween={10} slidesPerView={8} className="cast-list">
+                    {cast.map((item, idx) => {
+                      return (
+                        <SwiperSlide className="item">
+                          <Profile img={item.profile_path} name={item.name} id={item.id} key={idx} gender={item.gender}></Profile>
+                        </SwiperSlide>
+                      );
+                    })}
+                  </Swiper>
+                </dd>
               </dl>
             </div>
           </div>
