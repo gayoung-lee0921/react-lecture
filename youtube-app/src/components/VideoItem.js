@@ -1,9 +1,10 @@
 import React from "react";
 
-export default function VideoItem({ videoId, snippet, selectedVideo }) {
+export default function VideoItem({ videoId, snippet, selectedVideo, scrollTop }) {
   const onClickFunc = () => {
     console.log("click");
     selectedVideo({ snippet: snippet, videoId: videoId });
+    scrollTop(); // 맨 위로 가는 함수 실행
   };
   return (
     <li onClick={onClickFunc}>
