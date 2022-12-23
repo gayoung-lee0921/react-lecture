@@ -1,0 +1,95 @@
+{
+  "days": [
+    {
+      "id": 1,
+      "day": 1
+    },
+    {
+      "id": 2,
+      "day": 2
+    },
+    {
+      "id": 3,
+      "day": 3
+    }
+  ],
+  "vocas": [
+    {
+      "id": 1,
+      "kor": "호랑이",
+      "eng": "tiger",
+      "day": 1,
+      "done": false
+    },
+    {
+      "kor": "사자",
+      "eng": "lion",
+      "done": false,
+      "id": 2,
+      "day": 1
+    },
+    {
+      "id": 3,
+      "kor": "사과",
+      "eng": "apple",
+      "day": 2,
+      "done": false
+    },
+    {
+      "id": 4,
+      "kor": "딸기",
+      "eng": "strawberry",
+      "day": 2,
+      "done": false
+    },
+    {
+      "kor": "지구",
+      "eng": "earth",
+      "done": false,
+      "id": 5,
+      "day": 3
+    },
+    {
+      "kor": "화성",
+      "eng": "mars",
+      "done": false,
+      "id": 6,
+      "day": 3
+    },
+    {
+      "day": 1,
+      "kor": "고양이",
+      "eng": "cat",
+      "done": false,
+      "id": 7
+    },
+    {
+      "day": 1,
+      "kor": "겨울",
+      "eng": "winter",
+      "done": false,
+      "id": 8
+    },
+    {
+      "day": 1,
+      "kor": "음식",
+      "eng": "meal",
+      "done": false,
+      "id": 9
+    },
+    {
+      "day": "4",
+      "kor": "안녕",
+      "eng": "hello",
+      "done": false,
+      "id": 10
+    },
+    {
+      "day": "4",
+      "kor": "나무",
+      "eng": "tree",
+      "done": false,
+      "id": 11
+    }
+  ]
+}
