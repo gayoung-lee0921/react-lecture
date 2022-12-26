@@ -1,26 +1,5 @@
 {
-  "days": [
-    {
-      "id": 1,
-      "day": 1
-    },
-    {
-      "id": 2,
-      "day": 2
-    },
-    {
-      "id": 3,
-      "day": 3
-    }
-  ],
   "vocas": [
-    {
-      "id": 1,
-      "kor": "호랑이",
-      "eng": "tiger",
-      "day": 1,
-      "done": false
-    },
     {
       "kor": "사자",
       "eng": "lion",

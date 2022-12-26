@@ -37,7 +37,7 @@ function Day() {
       <h2>오늘 학습할 단어는...</h2>
       <ul>
         {vocas.map((item, idx) => {
-          return <Voca kor={item.kor} eng={item.eng} done={item.done} id={item.id} day={item.day} onDelete={onDelete} onUpdate={onUpdate}></Voca>;
+          return <Voca kor={item.kor} eng={item.eng} done={item.done} id={item._id} day={item.day} onDelete={onDelete} onUpdate={onUpdate} key={item._id}></Voca>;
         })}
       </ul>
     </Wrapper>
