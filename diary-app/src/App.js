@@ -37,12 +37,18 @@ function App() {
     });
     setDiaryListArray(newDiaryList);
   };
+  //고유 번호에 있는 걸 찾아서 내용을 바꿔야 한다.
+  const modifyDiary = (id, localContents) => {
+    const modifiedDiaryListArray = diaryListArray.map((item, idx) => (item.id === id ? { ...item, contents: localContents } : item));
+    setDiaryListArray(modifiedDiaryListArray);
+    //setDiaryListArray(diaryListArray.map((item, idx) => (item.id === id ? { ...item, contents: localContents } : item)));
+  };
 
   return (
     <div className="App">
       <GlobalStyle></GlobalStyle>
       <DiaryEditor insertDiary={insertDiary}></DiaryEditor>
-      <DiaryList diaryList={diaryListArray} deleteDiary={deleteDiary}></DiaryList>
+      <DiaryList diaryList={diaryListArray} deleteDiary={deleteDiary} modifyDiary={modifyDiary}></DiaryList>
     </div>
   );
 }

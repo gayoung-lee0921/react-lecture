@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export default function DiaryItem({ id, author, contents, emotion, date, deleteDiary, modifyDiary }) {
+export default function DiaryItem({ _id: id, author, contents, emotion, date, deleteDiary }) {
   const [isEdit, setIsEdit] = useState(false);
-  const [localContents, setLocalContents] = useState(contents);
-
   return (
     <Item>
       <Info>
@@ -20,34 +18,16 @@ export default function DiaryItem({ id, author, contents, emotion, date, deleteD
         </div>
         <div className="date">{new Date(date).toLocaleString()}</div>
       </Info>
-      {isEdit ? (
-        <ContentsBox
-          value={localContents}
-          onClick={(e) => {
-            setLocalContents(e.current.value);
-          }}
-        ></ContentsBox>
-      ) : (
-        <Contents>{contents}</Contents>
-      )}
+      {isEdit ? <ContentsBox value="눈이 옵니다. 집에 어떻게 가나요?"></ContentsBox> : <Contents>{contents}</Contents>}
 
       {isEdit ? (
         <Buttons>
-          <Button
-            onClick={() => {
-              if (window.confirm(`${id}번째 일기를 수정하시겠어요`)) {
-                setIsEdit(false);
-                modifyDiary(id, localContents);
-              }
-            }}
-          >
+          <Button>
             <i class="fa-solid fa-check"></i>
           </Button>
           <Button
             onClick={() => {
-              // 수정하다가 취소 했을때.....
               setIsEdit(false);
-              setLocalContents(contents);
             }}
           >
             <i className="fa-solid fa-xmark"></i>
@@ -76,6 +56,7 @@ export default function DiaryItem({ id, author, contents, emotion, date, deleteD
     </Item>
   );
 }
+
 const Item = styled.li`
   background-color: #ccc;
   padding: 15px;
